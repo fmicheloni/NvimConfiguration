@@ -1,6 +1,7 @@
 -- TODO: just a test todo
 -- FIX: fix this
 -- HACK: asd
+-- NOTE: random comment
 return {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
