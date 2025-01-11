@@ -2,25 +2,32 @@
 Nvim can be installed by using Brew (both on OSX and Linux).
 
 ```
-$ brew install neovim
+brew install neovim
 ```
 
 ### Clone repository
 
 ```
-$ git clone https://github.com/fmicheloni/NvimConfiguration.git ~/.config/nvim/
+git config --global url.ssh://git@github.com/.insteadOf https://github.com/
+mkdir ~/.config/nvim/ && git clone git@github.com:fmicheloni/NvimConfiguration.git ~/.config/nvim/
+```
+
+### Install utilities 
+```
+brew install ripgrep
+brew install fzf
 ```
 
 ### Setup Python Environment
 
 Create conda env:
 ```
-$ conda create -n pynvim python=3.8
-$ conda activate pynvim
+conda create -n pynvim python=3.8
+conda activate pynvim
 ```
 
 Install required packages:
 ```
-$ pip install pynvim
+pip install pynvim
 ```
 

@@ -29,7 +29,7 @@ vim.keymap.set("n", "<C-Down>", ":vertical +2<cr>", {})
 -- move between buffers
 vim.keymap.set("n", "<TAB>", ":bn!<cr>", {})
 vim.keymap.set("n", "<S-TAB>", "<C-w>w", {})
-vim.keymap.set("n", "<C-ESC>", ":bd<cr>", {})
+vim.keymap.set("n", "<leader>bd", ":bd<cr>", {})
 
 -- copy to clipboard
 vim.keymap.set("n", "<leader>y", "\"+y")

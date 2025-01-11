@@ -25,7 +25,7 @@ return {
             local python_interpreter_path = last_line(trim(result)) .. "/bin/python"
 
             vim.cmd({ cmd = "WhichPy", args = { "select", python_interpreter_path } })
-        end, { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>bpr", ':WhichPy reset<cr>', { noremap = true, silent = true })
+        end, { noremap = true, silent = true, desc = "When executed in a Python Brazil pkg, it will configure the interpreter automatically" })
+        vim.keymap.set("n", "<leader>bpr", ':WhichPy reset<cr>', { noremap = true, silent = true, desc = "Reset the Python interpreter" })
     end
 }
