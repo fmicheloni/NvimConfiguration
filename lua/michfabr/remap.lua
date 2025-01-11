@@ -1,5 +1,4 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- Move up/down selected lines
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -29,10 +28,17 @@ vim.keymap.set("n", "<C-Down>", ":vertical +2<cr>", {})
 -- move between buffers
 vim.keymap.set("n", "<TAB>", ":bn!<cr>", {})
 vim.keymap.set("n", "<S-TAB>", "<C-w>w", {})
-vim.keymap.set("n", "<leader>bd", ":bd<cr>", {})
+vim.keymap.set("n", "<leader>bd", ":bd | bn!<cr>", {})
 
 -- copy to clipboard
 vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
 
+vim.keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
+
+-- move between windows
+vim.keymap.set("n", "sh", "<C-w>h", { desc = "Move to the window on the left" })
+vim.keymap.set("n", "sl", "<C-w>l", { desc = "Move to the window on the right" })
+vim.keymap.set("n", "sk", "<C-w>k", { desc = "Move to the window on top" })
+vim.keymap.set("n", "sj", "<C-w>j", { desc = "Move to the window on bottom" })

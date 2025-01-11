@@ -1,5 +1,12 @@
 return {
     {
+        -- highlights words corresponding to the selected word
+        'RRethy/vim-illuminate',
+        config = function()
+            require('illuminate').configure({})
+        end
+    },
+    {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v2.x',
         lazy = true,
@@ -16,11 +23,11 @@ return {
         'hrsh7th/nvim-cmp',
         event = 'InsertEnter',
         dependencies = {
-            {'L3MON4D3/LuaSnip'},
+            { 'L3MON4D3/LuaSnip' },
         },
         config = function()
             -- Here is where you configure the autocompletion settings.
-            -- The arguments for .extend() have the same shape as `manage_nvim_cmp`: 
+            -- The arguments for .extend() have the same shape as `manage_nvim_cmp`:
             -- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/api-reference.md#manage_nvim_cmp
 
             require('lsp-zero.cmp').extend()
@@ -31,9 +38,9 @@ return {
             cmp.setup({
                 mapping = {
                     ['<C-Space>'] = cmp.mapping.complete(), -- open completion menu
-                    ['<C-f>'] = cmp.mapping.select_next_item({behavior = 'select'}),
-                    ['<C-b>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
-                    ['<CR>'] = cmp.mapping.confirm({select = false}),
+                    ['<C-f>'] = cmp.mapping.select_next_item({ behavior = 'select' }),
+                    ['<C-b>'] = cmp.mapping.select_prev_item({ behavior = 'select' }),
+                    ['<CR>'] = cmp.mapping.confirm({ select = false }),
                 }
             })
         end
@@ -43,18 +50,18 @@ return {
     {
         'neovim/nvim-lspconfig',
         cmd = 'LspInfo',
-        event = {'BufReadPre', 'BufNewFile'},
+        event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
-            {'hrsh7th/cmp-nvim-lsp'},
-            {'williamboman/mason-lspconfig.nvim'},
-            {'williamboman/mason.nvim'},
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'williamboman/mason-lspconfig.nvim' },
+            { 'williamboman/mason.nvim' },
         },
         config = function()
             -- This is where all the LSP shenanigans will live
 
             local lsp = require('lsp-zero')
 
-            require('mason').setup{}
+            require('mason').setup {}
             require('mason-lspconfig').setup {
                 ensure_installed = {
                     "lua_ls",
@@ -66,7 +73,7 @@ return {
             lsp.on_attach(function(client, bufnr)
                 -- see :help lsp-zero-keybindings
                 -- to learn the available actions
-                lsp.default_keymaps({buffer = bufnr})
+                lsp.default_keymaps({ buffer = bufnr })
             end)
 
             -- (Optional) Configure lua language server for neovim
@@ -79,13 +86,13 @@ return {
             if not configs.barium then
                 configs.barium = {
                     default_config = {
-                        cmd = {'barium'};
-                        filetypes = {'brazil-config'};
+                        cmd = { 'barium' },
+                        filetypes = { 'brazil-config' },
                         root_dir = function(fname)
                             return lspconfig.util.find_git_ancestor(fname)
-                        end;
-                        settings = {};
-                    };
+                        end,
+                        settings = {},
+                    },
                 }
             end
             lspconfig.barium.setup {}

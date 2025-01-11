@@ -7,6 +7,9 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
+vim.opt.guicursor = ""
+vim.opt.guicursor = "n-v-c:block-Cursor/lCursor"
+
 vim.g.python3_host_prog = "~/miniconda3/envs/pynvim/bin/python"
 
 vim.filetype.add({ filename = { Config = "brazil-config" } })
