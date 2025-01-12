@@ -13,12 +13,14 @@ mkdir ~/.config/nvim/ && git clone git@github.com:fmicheloni/NvimConfiguration.g
 ```
 
 ### Install utilities 
-```
+```bash
 brew install ripgrep
 brew install fzf
 
 # configure autocomplete
 $(brew --prefix)/opt/fzf/install
+
+npm install -g yarn # assumes npm is already installed on the machine
 ```
 
 ### Setup Python Environment
