@@ -1,5 +1,8 @@
 vim.g.mapleader = " "
 
+--- reload file
+vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<cr>", { desc = "Reload current file" })
+
 -- Move up/down selected lines
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -34,6 +37,15 @@ vim.keymap.set("n", "<leader>bd", ":bd | bn!<cr>", {})
 vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
+
+-- highlight on yank
+vim.api.nvim_create_autocmd("TextYankPost", {
+    desc = "highlight when yanking (copying) text",
+    group = vim.api.nvim_create_augroup("kickstart-highlight-tank", { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end
+})
 
 vim.keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
 
