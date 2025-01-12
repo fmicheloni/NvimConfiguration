@@ -1,5 +1,82 @@
+local opts = {
+    ensure_installed = {
+        'c',
+        'lua',
+        'vim',
+        'vimdoc',
+        'query',
+        'markdown',
+        'markdown_inline',
+        'html',
+        'css',
+        'javascript',
+        'java',
+        'typescript',
+        'rust',
+        'python',
+        'json',
+        'ssh_config',
+        'bash',
+    },
+    sync_install = false,
+    auto_install = true,
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+    }
+}
+
+local function config()
+    require('nvim-treesitter.configs').setup(opts)
+end
+
 return {
-    -- UFO folding
+    -- TODO: just a test todo
+    -- FIX: fix this
+    -- HACK: asd
+    -- NOTE: random comment
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        },
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        -- -@module "ibl"
+        -- -@type ibl.config
+        opts = {},
+    },
+    {
+        -- highlights words corresponding to the selected word
+        'RRethy/vim-illuminate',
+        config = function()
+            require('illuminate').configure({})
+        end
+    },
+    {
+        "catgoose/nvim-colorizer.lua",
+        event = "BufReadPre",
+        opts = { -- set to setup table
+        }
+    },
+    {
+        'nvim-treesitter/nvim-treesitter',
+        config = config,
+        build = ':TSUpdate',
+    },
+    -- folding stuff
+    {
+        "chrisgrieser/nvim-origami",
+        event = "VeryLazy",
+        opts = {
+            hOnlyOpensOnFirstColumn = true,
+        }, -- needed even when using default config
+    },
     {
         "kevinhwang91/nvim-ufo",
         dependencies = {
@@ -48,4 +125,3 @@ return {
     -- When preview is opened, the l key will close it and open fold. In all other cases these keys will work as usual.
     { "anuvyklack/fold-preview.nvim", dependencies = "anuvyklack/keymap-amend.nvim", config = true },
 }
-

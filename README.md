@@ -16,6 +16,9 @@ mkdir ~/.config/nvim/ && git clone git@github.com:fmicheloni/NvimConfiguration.g
 ```
 brew install ripgrep
 brew install fzf
+
+# configure autocomplete
+$(brew --prefix)/opt/fzf/install
 ```
 
 ### Setup Python Environment
