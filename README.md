@@ -17,6 +17,7 @@ mkdir ~/.config/nvim/ && git clone git@github.com:fmicheloni/NvimConfiguration.g
 brew install ripgrep
 brew install fzf
 brew install myzel394/formulae/config-lsp
+brew install jesseduffield/lazygit/lazygit
 
 # configure autocomplete
 $(brew --prefix)/opt/fzf/install
