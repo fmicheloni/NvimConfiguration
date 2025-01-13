@@ -163,6 +163,23 @@ return {
             lspconfig.marksman.setup({
                 capabilities = capabilities
             })
+            if not configs.config_lsp then
+                configs.config_lsp = {
+                    default_config = {
+                        cmd = { 'config-lsp' },
+                        filetypes = {
+                            "sshconfig",
+                            "sshdconfig",
+                            "fstab",
+                            "aliases",
+                            -- Matches wireguard configs and /etc/hosts
+                            "conf",
+                        },
+                        root_dir = vim.loop.cwd,
+                    },
+                }
+            end
+            lspconfig.config_lsp.setup {}
         end,
         init = function()
             vim.api.nvim_create_autocmd('LspAttach', {
