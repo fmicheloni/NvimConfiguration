@@ -25,8 +25,8 @@ vim.keymap.set("v", "<", "<gv")
 -- resize buffers
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<cr>", {})
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<cr>", {})
-vim.keymap.set("n", "<C-Up>", ":vertical -2<cr>", {})
-vim.keymap.set("n", "<C-Down>", ":vertical +2<cr>", {})
+vim.keymap.set("n", "<C-Up>", ":horizontal resize -2<cr>", {})
+vim.keymap.set("n", "<C-Down>", ":horizontal resize +2<cr>", {})
 
 -- move between buffers
 vim.keymap.set("n", "<TAB>", ":bn!<cr>", {})

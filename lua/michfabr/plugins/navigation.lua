@@ -18,10 +18,6 @@ return {
         end,
         init = function()
             vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<cr>", {});
-            vim.keymap.set("n", "<C-Left>", ":vertical resize -2<cr>", {})
-            vim.keymap.set("n", "<C-Right>", ":vertical resize +2<cr>", {})
-            vim.keymap.set("n", "<C-Up>", ":vertical -2<cr>", {})
-            vim.keymap.set("n", "<C-Down>", ":vertical +2<cr>", {})
             vim.keymap.set("n", "<TAB>", ":bn!<cr>", {})
             vim.keymap.set("n", "<S-TAB>", "<C-w>w", {})
             vim.keymap.set("n", "<C-f>", ":NvimTreeFindFile<cr>", { desc = "Jump to file in the tree" })

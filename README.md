@@ -36,5 +36,6 @@ conda activate pynvim
 Install required packages:
 ```
 pip install pynvim
+pip install debugpy
 ```
 

@@ -90,16 +90,11 @@ return {
 
     -- LSP
     {
-        'neovim/nvim-lspconfig',
-        cmd = 'LspInfo',
-        event = { 'BufReadPre', 'BufNewFile' },
+        "williamboman/mason-lspconfig.nvim",
         dependencies = {
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'williamboman/mason-lspconfig.nvim' },
             { 'williamboman/mason.nvim' },
         },
         config = function()
-            -- This is where all the LSP shenanigans will live
             require('mason').setup {}
             require('mason-lspconfig').setup {
                 automatic_installation = true,
@@ -110,7 +105,30 @@ return {
                     "marksman",
                 },
             }
-
+        end
+    },
+    {
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
+        requires = {
+            'williamboman/mason.nvim',
+        },
+        config = function()
+            require('mason-tool-installer').setup({
+                ensure_installed = {
+                    'debugpy',
+                },
+            })
+        end,
+    },
+    {
+        'neovim/nvim-lspconfig',
+        cmd = 'LspInfo',
+        event = { 'BufReadPre', 'BufNewFile' },
+        dependencies = {
+            { 'hrsh7th/cmp-nvim-lsp' },
+        },
+        config = function()
+            -- This is where all the LSP shenanigans will live
             -- (Optional) Configure lua language server for neovim
             local lspconfig = require('lspconfig')
             local configs = require('lspconfig.configs')
