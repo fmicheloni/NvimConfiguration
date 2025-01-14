@@ -49,8 +49,36 @@ return {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         init = function()
-            require('lualine').setup({})
-        end
+            -- logic for getting the configured interpreter. Should support multiple languages, depending on the selected file.
+            local current_python_interpreter = require("whichpy.envs").current_selected()
+            local shorten_path = function(full_path, max_dirs)
+                local parts = {}
+                for part in full_path:gmatch("[^/]+") do
+                    table.insert(parts, part)
+                end
+                if #parts > max_dirs then
+                    local result = {}
+                    for i = math.max(1, #parts - max_dirs + 1), #parts do
+                        table.insert(result, parts[i])
+                    end
+                    return "../" .. table.concat(result, "/")
+                end
+                return full_path
+            end
+            local ConfiguredInterpreter = function()
+                if current_python_interpreter ~= nil then
+                    return shorten_path(current_python_interpreter, 6)
+                end
+                return ''
+            end
+
+            require('lualine').setup({
+                sections = {
+                    lualine_c = { { 'filename', path = 1 } },
+                    lualine_x = { ConfiguredInterpreter, 'encoding', 'fileformat', 'filetype' }
+                }
+            })
+        end,
     },
     {
         "iamcco/markdown-preview.nvim",
