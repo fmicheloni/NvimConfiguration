@@ -116,6 +116,8 @@ return {
             local configs = require('lspconfig.configs')
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+            -- TODO: enable breadcrumbs to work with multiple tabs -> https://github.com/utilyre/barbecue.nvim/issues/35
+
             lspconfig.lua_ls.setup({
                 capabilities = capabilities,
                 settings = {

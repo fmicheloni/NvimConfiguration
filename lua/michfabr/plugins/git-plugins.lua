@@ -27,5 +27,11 @@ return {
         init = function()
             vim.keymap.set("n", "<leader>gb", ":Git blame<cr>", { desc = "Git blame" })
         end
+    },
+    {
+        "lewis6991/gitsigns.nvim",
+        config = function ()
+            require('gitsigns').setup()
+        end
     }
 }
