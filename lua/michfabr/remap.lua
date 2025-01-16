@@ -50,7 +50,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
 
 -- move between windows
-vim.keymap.set("n", "sh", "<C-w>h", { desc = "Move to the window on the left" })
-vim.keymap.set("n", "sl", "<C-w>l", { desc = "Move to the window on the right" })
-vim.keymap.set("n", "sk", "<C-w>k", { desc = "Move to the window on top" })
-vim.keymap.set("n", "sj", "<C-w>j", { desc = "Move to the window on bottom" })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to the window on the left" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to the window on the right" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to the window on top" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to the window on bottom" })
