@@ -23,6 +23,9 @@ brew install jesseduffield/lazygit/lazygit
 $(brew --prefix)/opt/fzf/install
 
 npm install -g yarn # assumes npm is already installed on the machine
+
+# Only on Ubuntu
+sudo apt install xclip
 ```
 
 ### Setup Python Environment
