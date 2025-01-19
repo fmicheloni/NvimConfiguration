@@ -12,6 +12,7 @@ local opts = {
         'javascript',
         'java',
         'typescript',
+        'tsx',
         'rust',
         'python',
         'json',

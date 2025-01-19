@@ -103,6 +103,15 @@ return {
                     "rust_analyzer",
                     "pyright",
                     "marksman",
+                    "dockerls",
+                    "docker_compose_language_service",
+
+                    -- web dev
+                    "ts_ls",
+                    "eslint",
+                    "html",
+                    "cssls",
+                    "tailwindcss",
                 },
             }
         end
@@ -200,6 +209,15 @@ return {
                 }
             end
             lspconfig.config_lsp.setup {}
+            lspconfig.ts_ls.setup({
+                capabilities = capabilities
+            })
+            lspconfig.eslint.setup {}
+            lspconfig.html.setup {}
+            lspconfig.cssls.setup {}
+            lspconfig.tailwindcss.setup {}
+            lspconfig.dockerls.setup {}
+            lspconfig.docker_compose_language_service.setup {}
         end,
         init = function()
             vim.api.nvim_create_autocmd('LspAttach', {
