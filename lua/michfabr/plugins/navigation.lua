@@ -88,5 +88,10 @@ return {
         opts = {
             -- configurations go here
         },
+    },
+    {
+        "chentoast/marks.nvim",
+        event = "VeryLazy",
+        opts = {},
     }
 }
