@@ -20,10 +20,28 @@ return {
     {
         "LintaoAmons/scratch.nvim",
         event = "VeryLazy",
-        dependencies = { "ibhagwan/fzf-lua" },
+        dependencies = { { "nvim-telescope/telescope.nvim" } },
         init = function()
             vim.keymap.set("n", "<leader>sfn", "<cmd>Scratch<cr>")
             vim.keymap.set("n", "<leader>sfo", "<cmd>ScratchOpen<cr>")
+        end
+    },
+    {
+        "ThePrimeagen/refactoring.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        lazy = false,
+        config = function()
+            require("refactoring").setup()
+        end,
+        init = function()
+            require("telescope").load_extension("refactoring")
+            vim.keymap.set("v", "<leader>r", function()
+                    require('telescope').extensions.refactoring.refactors()
+                end,
+                { noremap = true, silent = true })
         end
     },
 }
