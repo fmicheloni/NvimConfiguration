@@ -37,6 +37,7 @@ vim.keymap.set("n", "<leader>bd", ":bd | bn!<cr>", {})
 vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
+vim.keymap.set("n", "x", "\"_x")
 
 -- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {

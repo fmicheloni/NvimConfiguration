@@ -10,6 +10,14 @@ return {
     opts = {
     },
     init = function ()
+        vim.api.nvim_create_autocmd("BufEnter", {
+            group = vim.api.nvim_create_augroup("WhichpyBufEnter", { clear = true }),
+            pattern = "*.py",
+            callback = function ()
+                -- TODO: check if file is in specific interpreter path and configure it
+                require("notify")(vim.api.nvim_buf_get_name(0))
+            end
+        })
         -- configure brazil python interpreter
         vim.keymap.set("n", "<leader>bpi", function ()
             local command = "brazil-path testrun.runtimefarm"
