@@ -72,13 +72,6 @@ return {
     },
     -- folding stuff
     {
-        "chrisgrieser/nvim-origami",
-        event = "VeryLazy",
-        opts = {
-            hOnlyOpensOnFirstColumn = true,
-        }, -- needed even when using default config
-    },
-    {
         "kevinhwang91/nvim-ufo",
         dependencies = {
             "kevinhwang91/promise-async",
