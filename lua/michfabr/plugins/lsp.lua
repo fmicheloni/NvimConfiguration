@@ -102,7 +102,7 @@ return {
                     "lua_ls",
                     "rust_analyzer",
                     "pyright",
-                    "ruff_lsp",
+                    "ruff",
                     "marksman",
                     "dockerls",
                     "docker_compose_language_service",
@@ -180,7 +180,7 @@ return {
                     },
                 },
             })
-            lspconfig.ruff_lsp.setup({
+            lspconfig.ruff.setup({
                 on_attach = on_attach,
             })
             lspconfig.pyright.setup {
