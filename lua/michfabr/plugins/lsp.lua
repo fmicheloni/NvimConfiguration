@@ -102,6 +102,7 @@ return {
                     "lua_ls",
                     "rust_analyzer",
                     "pyright",
+                    "ruff_lsp",
                     "marksman",
                     "dockerls",
                     "docker_compose_language_service",
@@ -143,6 +144,13 @@ return {
             local configs = require('lspconfig.configs')
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+            local on_attach = function(client, bufnr)
+                if client.name == 'ruff_lsp' then
+                    -- Disable hover in favor of Pyright
+                    client.server_capabilities.hoverProvider = false
+                end
+            end
+
             -- TODO: enable breadcrumbs to work with multiple tabs -> https://github.com/utilyre/barbecue.nvim/issues/35
 
             lspconfig.lua_ls.setup({
@@ -172,9 +180,24 @@ return {
                     },
                 },
             })
-            lspconfig.pyright.setup({
-                capabilities = capabilities
+            lspconfig.ruff_lsp.setup({
+                on_attach = on_attach,
             })
+            lspconfig.pyright.setup {
+                capabilities = capabilities,
+                settings = {
+                    pyright = {
+                        -- Using Ruff's import organizer
+                        disableOrganizeImports = true,
+                    },
+                    python = {
+                        analysis = {
+                            -- Ignore all files for analysis to exclusively use Ruff for linting
+                            ignore = { '*' },
+                        },
+                    },
+                },
+            }
             -- NOTE: Barium should be installed as language client
             if not configs.barium then
                 configs.barium = {
