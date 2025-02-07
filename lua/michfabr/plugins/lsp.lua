@@ -106,6 +106,7 @@ return {
                     "marksman",
                     "dockerls",
                     "docker_compose_language_service",
+                    "jsonls",
 
                     -- web dev
                     "ts_ls",
@@ -152,6 +153,9 @@ return {
             end
 
             -- TODO: enable breadcrumbs to work with multiple tabs -> https://github.com/utilyre/barbecue.nvim/issues/35
+            lspconfig.jsonls.setup({
+                capabilities = capabilities,
+            })
 
             lspconfig.lua_ls.setup({
                 capabilities = capabilities,
