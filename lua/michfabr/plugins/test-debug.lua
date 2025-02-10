@@ -1,3 +1,14 @@
+local function getEnvFromFile()
+    local envfile = vim.fn.findfile('.env', '.;')
+    local filecontents = vim.fn.readfile(envfile)
+    local result = {}
+    for line_no, line in pairs(filecontents) do
+        local k, v = string.match(line, "(.+)=(.+)")
+        result[k] = v
+    end
+    return result
+end
+
 return {
     {
         "nvim-neotest/neotest",
@@ -14,22 +25,19 @@ return {
                 adapters = {
                     require("neotest-python")({
                         dap = { justMyCode = false },
+                        runner = "unittest",
                         python = function()
                             return require("whichpy.envs").current_selected()
-                        end
+                        end,
                     }),
                 }
             });
         end,
         init = function()
             -- run test mappings
-            vim.keymap.set("n", "<leader>ta", function()
-                require("neotest").output_panel.clear()
-                require("neotest").run.run(vim.fn.expand("%"))
-            end, { desc = "Run file (Neotest)" })
             vim.keymap.set("n", "<leader>tt", function()
                 require("neotest").output_panel.clear()
-                require("neotest").run.run()
+                require("neotest").run.run({ env = getEnvFromFile() })
             end, { desc = "Run closest test (Neotest)" })
             vim.keymap.set("n", "<leader>tl", function()
                 require("neotest").output_panel.clear()
@@ -37,10 +45,6 @@ return {
             end, { desc = "Run last executed test (Neotest)" })
             vim.keymap.set("n", "<leader>tp", function() require("neotest").output_panel.toggle() end,
                 { desc = "Open / Close test output panel (Neotest)" })
-
-            -- run debug mappings
-            -- vim.keymap.set("n", "<leader>td", function() require("neotest").run.run({ strategy = "dap" }) end,
-            --     { desc = "Debug closest test (Neotest)" })
         end
     },
     {
@@ -55,11 +59,8 @@ return {
             local dap = require("dap")
 
             local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-            require("dap-python").setup(path)
-            -- require('dap-python').resolve_python = function()
-            --     require("whichpy.envs").current_selected()
-            -- end
-
+            local dap_python = require("dap-python")
+            dap_python.setup(path)
 
             local hide_info = function()
                 print("hide")
@@ -125,8 +126,13 @@ return {
             })
         end,
         init = function()
-            vim.keymap.set("n", "<leader>dt", function() require('dap-python').test_method() end,
-                { desc = "Debug closest test (DAP)" })
+            vim.keymap.set("n", "<leader>dt", function() require('dap-python').test_method( { 
+                config = { 
+                    justMyCode = false, 
+                    env = getEnvFromFile()
+                } 
+            } ) end,
+            { desc = "Debug closest test (DAP)" })
             vim.keymap.set("n", '<leader>dc', function() require('dap').continue() end, { desc = "Debug continue" })
             vim.keymap.set("n", '<leader>db', function() require('dap').toggle_breakpoint() end, { desc = "Debug toggle breakpoint" })
             vim.keymap.set("n", '<F6>', function() require('dap').step_over() end, { desc = "Debug step over" })
