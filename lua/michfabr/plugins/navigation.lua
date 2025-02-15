@@ -93,5 +93,34 @@ return {
         "chentoast/marks.nvim",
         event = "VeryLazy",
         opts = {},
+    },
+    {
+        "bassamsdata/namu.nvim",
+        config = function()
+            require("namu").setup({
+                namu_symbols = {
+                    enable = true,
+                    options = {},
+                },
+
+                colorscheme = {
+                    enable = false,
+                    options = {
+                        persist = true,
+                        write_shada = false,
+                    },
+                },
+                ui_select = { enable = false },
+            })
+
+            vim.keymap.set("n", "<leader>ss", ":Namu symbols<cr>", {
+                desc = "Jump to LSP symbol",
+                silent = true,
+            })
+            vim.keymap.set("n", "<leader>th", ":Namu colorscheme<cr>", {
+                desc = "Colorscheme Picker",
+                silent = true,
+            })
+        end,
     }
 }

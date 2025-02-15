@@ -17,7 +17,7 @@ vim.cmd([[
     highlight Cursor guifg=white guibg=white
 ]])
 vim.cmd([[
-    highligh Visual guifg=#232136 guibg=#9ccfd8 gui=none
+    highligh Visual guifg=#232136 guibg=#78a9ac gui=none
 ]])
 
 vim.g.python3_host_prog = "~/miniconda3/envs/pynvim/bin/python"
