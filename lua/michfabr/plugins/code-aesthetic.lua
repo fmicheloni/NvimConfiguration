@@ -24,6 +24,15 @@ local opts = {
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
+    },
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = '<C-K>',
+            scope_incremental = '<C-L>',
+            node_incremental = '<C-K>',
+            node_decremental = '<C-J>',
+        }
     }
 }
 
@@ -82,8 +91,8 @@ return {
                     require("statuscol").setup({
                         relculright = true,
                         segments = {
-                            { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-                            { text = { "%s" }, click = "v:lua.ScSa" },
+                            { text = { builtin.foldfunc },      click = "v:lua.ScFa" },
+                            { text = { "%s" },                  click = "v:lua.ScSa" },
                             { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
                         },
                     })
@@ -100,7 +109,7 @@ return {
         init = function()
             -- UFO folding
             vim.o.foldcolumn = "1" -- '0' is not bad
-            vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+            vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
             vim.o.foldlevelstart = 99
             vim.o.foldenable = true
             vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:>]]
