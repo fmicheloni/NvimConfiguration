@@ -2,6 +2,9 @@ return {
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
+        init = function()
+            require("todo-comments").setup({})
+        end
     },
     {
         "LintaoAmons/scratch.nvim",

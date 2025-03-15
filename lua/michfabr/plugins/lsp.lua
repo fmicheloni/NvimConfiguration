@@ -63,7 +63,6 @@ return {
                 end
             end
 
-            -- TODO: enable breadcrumbs to work with multiple tabs -> https://github.com/utilyre/barbecue.nvim/issues/35
             lspconfig.jsonls.setup({
                 capabilities = capabilities,
             })
