@@ -41,25 +41,15 @@ local function config()
 end
 
 return {
-    -- TODO: just a test todo
-    -- FIX: fix this
-    -- HACK: asd
-    -- NOTE: random comment
-    {
-        "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-        },
-    },
     {
         "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        -- -@module "ibl"
-        -- -@type ibl.config
-        opts = {},
+        config = function()
+            require("ibl").setup({
+                scope = {
+                    enabled = false,
+                },
+            })
+        end
     },
     {
         -- highlights words corresponding to the selected word
@@ -71,8 +61,6 @@ return {
     {
         "catgoose/nvim-colorizer.lua",
         event = "BufReadPre",
-        opts = { -- set to setup table
-        }
     },
     {
         'nvim-treesitter/nvim-treesitter',
@@ -122,9 +110,4 @@ return {
             end)
         end,
     },
-    -- Folding preview, by default h and l keys are used.
-    -- On first press of h key, when cursor is on a closed fold, the preview will be shown.
-    -- On second press the preview will be closed and fold will be opened.
-    -- When preview is opened, the l key will close it and open fold. In all other cases these keys will work as usual.
-    { "anuvyklack/fold-preview.nvim", dependencies = "anuvyklack/keymap-amend.nvim", config = true },
 }

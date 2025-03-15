@@ -1,6 +1,5 @@
 require("michfabr.remap")
 require("michfabr.lazy")
-require("michfabr.colors")
 require("michfabr.set")
 
 vim.g.loaded_netrw = 1
@@ -15,9 +14,6 @@ vim.cmd([[
 ]])
 vim.cmd([[
     highlight Cursor guifg=white guibg=white
-]])
-vim.cmd([[
-    highligh Visual guifg=#232136 guibg=#78a9ac gui=none
 ]])
 
 vim.g.python3_host_prog = "~/miniconda3/envs/pynvim/bin/python"

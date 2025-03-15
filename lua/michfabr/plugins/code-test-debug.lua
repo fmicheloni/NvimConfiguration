@@ -1,5 +1,5 @@
 local function getEnvFromFile()
-    local envfile = vim.fn.findfile('.env', '.;')
+    local envfile = vim.fn.findfile(".env", ".;")
     local filecontents = vim.fn.readfile(envfile)
     local result = {}
     for line_no, line in pairs(filecontents) do
@@ -127,7 +127,7 @@ return {
         end,
         init = function()
             vim.keymap.set("n", "<leader>dt", function()
-                    require('dap-python').test_method({
+                    require("dap-python").test_method({
                         config = {
                             justMyCode = false,
                             env = getEnvFromFile()
@@ -135,12 +135,12 @@ return {
                     })
                 end,
                 { desc = "Debug closest test (DAP)" })
-            vim.keymap.set("n", '<leader>dc', function() require('dap').continue() end, { desc = "Debug continue" })
-            vim.keymap.set("n", '<leader>db', function() require('dap').toggle_breakpoint() end,
+            vim.keymap.set("n", "<leader>dc", function() require("dap").continue() end, { desc = "Debug continue" })
+            vim.keymap.set("n", "<leader>db", function() require("dap").toggle_breakpoint() end,
                 { desc = "Debug toggle breakpoint" })
-            vim.keymap.set("n", '<F6>', function() require('dap').step_over() end, { desc = "Debug step over" })
-            vim.keymap.set("n", '<F7>', function() require('dap').step_into() end, { desc = "Debug step into" })
-            vim.keymap.set("n", '<F8>', function() require('dap').step_out() end, { desc = "Debug step out" })
+            vim.keymap.set("n", "<F6>", function() require("dap").step_over() end, { desc = "Debug step over" })
+            vim.keymap.set("n", "<F7>", function() require("dap").step_into() end, { desc = "Debug step into" })
+            vim.keymap.set("n", "<F8>", function() require("dap").step_out() end, { desc = "Debug step out" })
             vim.keymap.set("n", "<leader>de", function()
                 require("dapui").eval(nil, { enter = true })
             end)

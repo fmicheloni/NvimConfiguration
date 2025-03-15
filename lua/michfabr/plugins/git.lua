@@ -1,11 +1,5 @@
 return {
     {
-        "tpope/vim-fugitive",
-        init = function()
-            vim.keymap.set("n", "<leader>gb", ":Git blame<cr>", { desc = "Git blame" })
-        end
-    },
-    {
         "kdheepak/lazygit.nvim",
         lazy = true,
         cmd = {
@@ -19,7 +13,7 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
-        -- setting the keybinding for LazyGit with 'keys' is recommended in
+        -- setting the keybinding for LazyGit with "keys" is recommended in
         -- order to load the plugin when the command is run for the first time
         keys = {
             { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
@@ -31,7 +25,7 @@ return {
     {
         "lewis6991/gitsigns.nvim",
         config = function ()
-            require('gitsigns').setup()
+            require("gitsigns").setup()
         end
     }
 }

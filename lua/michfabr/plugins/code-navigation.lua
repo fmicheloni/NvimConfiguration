@@ -17,9 +17,8 @@ return {
             }
         end,
         init = function()
-            vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<cr>", {});
+            vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<cr>", { desc = "Toggle project tree" });
             vim.keymap.set("n", "<TAB>", ":bn!<cr>", {})
-            vim.keymap.set("n", "<S-TAB>", "<C-w>w", {})
             vim.keymap.set("n", "<C-f>", ":NvimTreeFindFile<cr>", { desc = "Jump to file in the tree" })
         end
     },
@@ -43,39 +42,22 @@ return {
         end
     },
     {
-        'nvim-telescope/telescope.nvim',
-        tag = '0.1.8',
-        -- or                              , branch = '0.1.x',
-        dependencies = { 'nvim-lua/plenary.nvim' },
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.8",
+        dependencies = { "nvim-lua/plenary.nvim" },
         lazy = false,
         init = function()
             local builtin = require("telescope.builtin")
 
-            vim.keymap.set("n", "<leader>pf", builtin.find_files, {})
+            vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find file in scope" })
 
-            vim.keymap.set("n", "<C-p>", builtin.git_files, {})
+            vim.keymap.set("n", "<leader>fp", builtin.git_files, { desc = "Find file in git" })
 
-            vim.keymap.set("n", "<leader>ps", function()
+            vim.keymap.set("n", "<leader>fg", function()
                 builtin.grep_string({ search = vim.fn.input("Grep > ") });
-            end
-            )
+            end, { desc = "Find grep" })
+            vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffer" })
         end,
-    },
-    {
-        'akinsho/bufferline.nvim',
-        version = "*",
-        dependencies = {
-            'nvim-tree/nvim-web-devicons'
-        },
-        init = function()
-            require('bufferline').setup {
-                options = {
-                    hover = {
-                        enabled = false,
-                    }
-                }
-            }
-        end
     },
     {
         "utilyre/barbecue.nvim",
@@ -122,5 +104,11 @@ return {
                 silent = true,
             })
         end,
+    },
+    {
+        "mbbill/undotree",
+        init = function()
+            vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+        end
     }
 }

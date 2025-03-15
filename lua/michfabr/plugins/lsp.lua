@@ -1,55 +1,13 @@
 return {
-    -- Autocompletion
-    {
-        'L3MON4D3/LuaSnip',
-        dependencies = {
-            'saadparwaiz1/cmp_luasnip',
-            'rafamadriz/friendly-snippets'
-        }
-    },
-    {
-        'hrsh7th/nvim-cmp',
-        event = 'InsertEnter',
-        config = function()
-            -- And you can configure cmp even more, if you want to.
-            local cmp = require('cmp')
-            require('luasnip.loaders.from_vscode').lazy_load()
-
-            cmp.setup({ ---@diagnostic disable-line: redundant-parameter
-                snippet = {
-                    expand = function(args)
-                        require('luasnip').lsp_expand(args.body)
-                    end
-                },
-                window = {
-                    completion = cmp.config.window.bordered(),
-                    documentation = cmp.config.window.bordered(),
-                },
-                mapping = {
-                    ['<C-Space>'] = cmp.mapping.complete(), -- open completion menu
-                    ['<C-f>'] = cmp.mapping.select_next_item({ behavior = 'select' }),
-                    ['<C-b>'] = cmp.mapping.select_prev_item({ behavior = 'select' }),
-                    ['<CR>'] = cmp.mapping.confirm({ select = false }),
-                },
-                sources = cmp.config.sources({
-                    { name = 'nvim_lsp' },
-                    { name = 'luasnip' }, -- For luasnip users.
-                }, {
-                    { name = 'buffer' },
-                })
-            })
-        end
-    },
-
     -- LSP
     {
         "williamboman/mason-lspconfig.nvim",
         dependencies = {
-            { 'williamboman/mason.nvim' },
+            { "williamboman/mason.nvim" },
         },
         config = function()
-            require('mason').setup {}
-            require('mason-lspconfig').setup {
+            require("mason").setup {}
+            require("mason-lspconfig").setup {
                 automatic_installation = true,
                 ensure_installed = {
                     "lua_ls",
@@ -72,34 +30,34 @@ return {
         end
     },
     {
-        'WhoIsSethDaniel/mason-tool-installer.nvim',
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
         requires = {
-            'williamboman/mason.nvim',
+            "williamboman/mason.nvim",
         },
         config = function()
-            require('mason-tool-installer').setup({
+            require("mason-tool-installer").setup({
                 ensure_installed = {
-                    'debugpy',
+                    "debugpy",
                 },
             })
         end,
     },
     {
-        'neovim/nvim-lspconfig',
-        cmd = 'LspInfo',
-        event = { 'BufReadPre', 'BufNewFile' },
+        "neovim/nvim-lspconfig",
+        cmd = "LspInfo",
+        event = { "BufReadPre", "BufNewFile" },
         dependencies = {
-            { 'hrsh7th/cmp-nvim-lsp' },
+            { "hrsh7th/cmp-nvim-lsp" },
         },
         config = function()
             -- This is where all the LSP shenanigans will live
             -- (Optional) Configure lua language server for neovim
-            local lspconfig = require('lspconfig')
-            local configs = require('lspconfig.configs')
-            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+            local lspconfig = require("lspconfig")
+            local configs = require("lspconfig.configs")
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
             local on_attach = function(client, bufnr)
-                if client.name == 'ruff_lsp' then
+                if client.name == "ruff_lsp" then
                     -- Disable hover in favor of Pyright
                     client.server_capabilities.hoverProvider = false
                 end
@@ -115,15 +73,15 @@ return {
                 settings = {
                     Lua = {
                         runtime = {
-                            -- Tell the language server which version of Lua you're using
+                            -- Tell the language server which version of Lua you"re using
                             -- (most likely LuaJIT in the case of Neovim)
-                            version = 'LuaJIT',
+                            version = "LuaJIT",
                         },
                         diagnostics = {
                             -- Get the language server to recognize the `vim` global
                             globals = {
-                                'vim',
-                                'require'
+                                "vim",
+                                "require"
                             },
                         },
                         workspace = {
@@ -144,13 +102,13 @@ return {
                 capabilities = capabilities,
                 settings = {
                     pyright = {
-                        -- Using Ruff's import organizer
+                        -- Using Ruff"s import organizer
                         disableOrganizeImports = true,
                     },
                     python = {
                         analysis = {
                             -- Ignore all files for analysis to exclusively use Ruff for linting
-                            ignore = { '*' },
+                            ignore = { "*" },
                         },
                     },
                 },
@@ -159,10 +117,10 @@ return {
             if not configs.barium then
                 configs.barium = {
                     default_config = {
-                        cmd = { 'barium' },
-                        filetypes = { 'brazil-config' },
+                        cmd = { "barium" },
+                        filetypes = { "brazil-config" },
                         root_dir = function(fname)
-                            return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+                            return vim.fs.dirname(vim.fs.find(".git", { path = fname, upward = true })[1])
                         end,
                         settings = {},
                     },
@@ -175,7 +133,7 @@ return {
             if not configs.config_lsp then
                 configs.config_lsp = {
                     default_config = {
-                        cmd = { 'config-lsp' },
+                        cmd = { "config-lsp" },
                         filetypes = {
                             "sshconfig",
                             "sshdconfig",
@@ -200,21 +158,21 @@ return {
             lspconfig.docker_compose_language_service.setup {}
         end,
         init = function()
-            vim.api.nvim_create_autocmd('LspAttach', {
-                desc = 'LSP actions',
+            vim.api.nvim_create_autocmd("LspAttach", {
+                desc = "LSP actions",
                 callback = function(event)
                     local opts = { buffer = event.buf }
 
-                    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-                    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-                    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-                    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-                    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-                    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-                    vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-                    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-                    vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-                    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+                    vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+                    vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+                    vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+                    vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+                    vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
+                    vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+                    vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+                    vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+                    vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
+                    vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
                 end,
             })
         end
