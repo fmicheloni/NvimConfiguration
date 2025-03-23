@@ -155,6 +155,7 @@ return {
             lspconfig.tailwindcss.setup {}
             lspconfig.dockerls.setup {}
             lspconfig.docker_compose_language_service.setup {}
+            lspconfig.rust_analyzer.setup {}
         end,
         init = function()
             vim.api.nvim_create_autocmd("LspAttach", {
@@ -172,6 +173,7 @@ return {
                     vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
                     vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
                     vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+                    vim.keymap.set("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
                 end,
             })
         end
