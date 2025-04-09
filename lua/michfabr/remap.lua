@@ -33,12 +33,6 @@ vim.keymap.set("n", "<TAB>", ":bn!<cr>", {})
 vim.keymap.set("n", "<S-TAB>", "<C-w>w", {})
 vim.keymap.set("n", "<leader>bd", ":bd | bn!<cr>", {})
 
--- copy to clipboard
-vim.keymap.set("n", "<leader>y", "\"+y")
-vim.keymap.set("v", "<leader>y", "\"+y")
-vim.keymap.set("n", "<leader>Y", "\"+Y")
-vim.keymap.set("n", "x", "\"_x")
-
 -- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "highlight when yanking (copying) text",
