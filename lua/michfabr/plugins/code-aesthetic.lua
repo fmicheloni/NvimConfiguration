@@ -11,6 +11,7 @@ local opts = {
         'css',
         'javascript',
         'java',
+        'kotlin',
         'typescript',
         'tsx',
         'rust',
