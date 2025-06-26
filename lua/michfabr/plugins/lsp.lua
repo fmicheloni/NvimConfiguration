@@ -26,6 +26,7 @@ return {
                     "cssls",
                     "tailwindcss",
                 },
+                automatic_enable = false,
             }
         end
     },
