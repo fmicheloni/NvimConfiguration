@@ -1,44 +1,15 @@
-### Install neovim
-Nvim can be installed by using Brew (both on OSX and Linux).
+## Prerequisites
+1. Neovim 0.12
+2. Install `fzf`
+3. Install `ripgrep`
+4. Install `fd`
 
-```
-brew install neovim
-```
+## Useful use cases
 
-### Clone repository
 
-```
-git config --global url.ssh://git@github.com/.insteadOf https://github.com/
-mkdir ~/.config/nvim/ && git clone git@github.com:fmicheloni/NvimConfiguration.git ~/.config/nvim/
-```
-
-### Install utilities 
-```bash
-brew install ripgrep
-brew install fzf
-brew install myzel394/formulae/config-lsp
-brew install jesseduffield/lazygit/lazygit
-
-# configure autocomplete
-$(brew --prefix)/opt/fzf/install
-
-npm install -g yarn # assumes npm is already installed on the machine
-
-# Only on Ubuntu
-sudo apt install xclip
-```
-
-### Setup Python Environment
-
-Create conda env:
-```
-conda create -n pynvim python=3.8
-conda activate pynvim
-```
-
-Install required packages:
-```
-pip install pynvim
-pip install debugpy
-```
-
+### Search and Replace (single file)
+1. Search for the pattern: `/vim.keymap.set` (Press Enter).
+2. Type `cgn` (This stands for Change Go Next. It searches for the next match, visually selects it, and puts you in Insert mode).
+3. Type your replacement.
+4. Press `<Esc>`.
+5. Now, simply press `.` (the dot command) to jump to the next occurrence and replace it instantly. Press `n` if you want to skip one.
