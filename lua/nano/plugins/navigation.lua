@@ -1,7 +1,7 @@
 --------------------------
 -- OIL
 --------------------------
-vim.pack.add({"https://github.com/stevearc/oil.nvim"})
+vim.pack.add({ "https://github.com/stevearc/oil.nvim" })
 
 require("oil").setup({
   default_file_explorer = true,
@@ -21,18 +21,18 @@ require("oil").setup({
 
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 vim.keymap.set("n", "<leader>-", function()
-    vim.cmd("vsplit")
-    vim.cmd("wincmd L")
-    -- Calculate 1/3 of the total columns
-    local width = math.floor(vim.o.columns / 3)
-    vim.cmd("vertical resize " .. width)
-    require("oil").open()
+  vim.cmd("vsplit")
+  vim.cmd("wincmd L")
+  -- Calculate 1/3 of the total columns
+  local width = math.floor(vim.o.columns / 3)
+  vim.cmd("vertical resize " .. width)
+  require("oil").open()
 end, { desc = "Open Oil in a vertical split" })
 
 --------------------------
 -- FZF
 --------------------------
-vim.pack.add({"https://github.com/ibhagwan/fzf-lua"})
+vim.pack.add({ "https://github.com/ibhagwan/fzf-lua" })
 
 local fzf = require("fzf-lua")
 
@@ -48,7 +48,7 @@ fzf.setup({
   previewers = {
     builtin = {
       syntax = true,
-      syntax_limit_b = 1024*500, -- Disable syntax for files > 500KB
+      syntax_limit_b = 1024 * 500, -- Disable syntax for files > 500KB
     },
   },
 })
@@ -62,7 +62,7 @@ vim.keymap.set("n", "<leader>fr", fzf.resume, { desc = "Resume last search" })
 --------------------------
 -- Harpoon
 --------------------------
-vim.pack.add({"https://github.com/nvim-lua/plenary.nvim"})
+vim.pack.add({ "https://github.com/nvim-lua/plenary.nvim" })
 vim.pack.add({
   {
     src = "https://github.com/ThePrimeagen/harpoon",

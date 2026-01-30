@@ -5,8 +5,8 @@ keymap("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear search highlights" })
 
 -- Copy, paste, delete...
 keymap("x", "<leader>p", [["_dP]], { desc = "Paste and keep clipboard" })
-keymap({"n", "v"}, "<leader>d", [["_d]], { desc = "Delete to void register" })
-keymap({"n", "v"}, "<leader>y", [["+y]], { desc = "Copy to system clipboard" })
+keymap({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete to void register" })
+keymap({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to system clipboard" })
 
 -- Move up/down selected lines
 keymap("v", "J", ":m '>+1<CR>gv=gv")
@@ -29,11 +29,11 @@ keymap("v", "<", "<gv")
 
 -- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-    desc = "highlight when yanking (copying) text",
-    group = vim.api.nvim_create_augroup("kickstart-highlight-tank", { clear = true }),
-    callback = function()
-        vim.highlight.on_yank()
-    end
+  desc = "highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("kickstart-highlight-tank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end
 })
 
 keymap("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
@@ -49,4 +49,3 @@ keymap("n", "<C-j>", "<C-w>j", { desc = "Move to the window on bottom" })
 -- keymap("n", "<C-j>", "<cmd>cprev<CR>zz")
 -- keymap("n", "<leader>k", "<cmd>lnext<CR>zz")
 -- keymap("n", "<leader>j", "<cmd>lprev<CR>zz")
-
