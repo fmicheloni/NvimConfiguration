@@ -53,11 +53,11 @@ fzf.setup({
   },
 })
 
-vim.keymap.set("n", "<leader>ff", fzf.files, { desc = "Fuzzy find files" })
-vim.keymap.set("n", "<C-p>", fzf.git_files, { desc = "Fuzzy find git files" })
-vim.keymap.set("n", "<leader>fs", fzf.live_grep, { desc = "Live grep (search text)" })
-vim.keymap.set("n", "<leader>fb", fzf.buffers, { desc = "Fuzzy find open buffers" })
-vim.keymap.set("n", "<leader>fr", fzf.resume, { desc = "Resume last search" })
+vim.keymap.set("n", "<leader>ff", fzf.files, { desc = "fzf: Fuzzy find files" })
+vim.keymap.set("n", "<C-p>", fzf.git_files, { desc = "fzf: Fuzzy find git files" })
+vim.keymap.set("n", "<leader>fs", fzf.live_grep, { desc = "fzf: Live grep (search text)" })
+vim.keymap.set("n", "<leader>fb", fzf.buffers, { desc = "fzf: Fuzzy find open buffers" })
+vim.keymap.set("n", "<leader>fr", fzf.resume, { desc = "fzf: Resume last search" })
 
 --------------------------
 -- Harpoon
@@ -73,13 +73,13 @@ vim.pack.add({
 local harpoon = require("harpoon")
 harpoon:setup()
 
-vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Harpoon: mark buffer" })
 vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
-vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
-vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
-vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
-vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
+vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end, { desc = "Harpoon: jump to buffer 1" })
+vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end, { desc = "Harpoon: jump to buffer 2" })
+vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end, { desc = "Harpoon: jump to buffer 3" })
+vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end, { desc = "Harpoon: jump to buffer 4" })
 
 -- Toggle previous & next buffers stored within Harpoon list
 vim.keymap.set("n", "<M-p>", function() harpoon:list():prev() end, { desc = "Harpoon: Previous" })
