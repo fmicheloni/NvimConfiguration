@@ -3,6 +3,7 @@
 --------------------------
 vim.pack.add({ "https://github.com/mason-org/mason.nvim" })
 vim.pack.add({ "https://github.com/mason-org/mason-lspconfig.nvim" })
+vim.pack.add({ "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" })
 
 require("mason").setup({
   ui = {
@@ -20,13 +21,21 @@ require("mason-lspconfig").setup({
   ensure_installed = {
     "lua_ls",
     "rust_analyzer",
+    "bashls",
   },
 })
+
+require('mason-tool-installer').setup {
+  ensure_installed = {
+    'shellcheck',
+  }
+}
 
 --------------------------
 -- Native LSP Config
 --------------------------
 vim.lsp.enable('lua_ls')
+vim.lsp.enable('bashls')
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)

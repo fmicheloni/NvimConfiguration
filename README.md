@@ -3,6 +3,7 @@
 2. Install `fzf`
 3. Install `ripgrep`
 4. Install `fd`
+5. Install `node`. Use a node package manager.
 
 ## Useful use cases
 
