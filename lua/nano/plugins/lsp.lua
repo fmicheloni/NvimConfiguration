@@ -22,6 +22,7 @@ require("mason-lspconfig").setup({
     "lua_ls",
     "rust_analyzer",
     "bashls",
+    "vtsls",
   },
 })
 
@@ -36,6 +37,7 @@ require('mason-tool-installer').setup {
 --------------------------
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('bashls')
+vim.lsp.enable('vtsls')
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
