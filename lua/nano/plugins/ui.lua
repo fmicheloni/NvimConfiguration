@@ -13,7 +13,7 @@ require("rose-pine").setup({
 vim.cmd("colorscheme rose-pine")
 
 --------------------------
--- Rose Pine colors
+-- Git Signs
 --------------------------
 vim.pack.add({ "https://github.com/lewis6991/gitsigns.nvim" })
 
@@ -53,7 +53,6 @@ require('gitsigns').setup {
       return '<Ignore>'
     end, { expr = true, desc = "Previous Change" })
 
-    -- Actions: The "Pro" stuff
     map('n', '<leader>hs', gitsigns.stage_hunk, { desc = "Stage Hunk" })
     map('n', '<leader>hr', gitsigns.reset_hunk, { desc = "Reset Hunk" })
     map('n', '<leader>hp', gitsigns.preview_hunk, { desc = "Preview Hunk" })

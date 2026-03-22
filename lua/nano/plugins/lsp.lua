@@ -23,6 +23,8 @@ require("mason-lspconfig").setup({
     "rust_analyzer",
     "bashls",
     "vtsls",
+    "basedpyright",
+    "ruff",
   },
 })
 
@@ -38,6 +40,8 @@ require('mason-tool-installer').setup {
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('bashls')
 vim.lsp.enable('vtsls')
+vim.lsp.enable('basedpyright')
+vim.lsp.enable('ruff')
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
