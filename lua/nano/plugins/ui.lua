@@ -60,3 +60,13 @@ require('gitsigns').setup {
     map('n', '<leader>hb', function() gitsigns.blame_line { full = true } end, { desc = "Blame Line" })
   end
 }
+
+--------------------------
+-- Diffview
+--------------------------
+vim.pack.add({ "https://github.com/sindrets/diffview.nvim" })
+
+require("diffview").setup({})
+
+vim.keymap.set("n", "<leader>gd", "<CMD>DiffviewOpen<CR>",  { desc = "Git: Open diff view" })
+vim.keymap.set("n", "<leader>gq", "<CMD>DiffviewClose<CR>", { desc = "Git: Close diff view" })

@@ -58,6 +58,7 @@ vim.keymap.set("n", "<C-p>", fzf.git_files, { desc = "fzf: Fuzzy find git files"
 vim.keymap.set("n", "<leader>fs", fzf.live_grep, { desc = "fzf: Live grep (search text)" })
 vim.keymap.set("n", "<leader>fb", fzf.buffers, { desc = "fzf: Fuzzy find open buffers" })
 vim.keymap.set("n", "<leader>fr", fzf.resume, { desc = "fzf: Resume last search" })
+vim.keymap.set("n", "<leader>fg", fzf.git_status, { desc = "fzf: Git status (changed files)" })
 
 --------------------------
 -- Harpoon
