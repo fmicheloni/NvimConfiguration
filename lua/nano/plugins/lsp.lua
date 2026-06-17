@@ -25,6 +25,7 @@ require("mason-lspconfig").setup({
     "vtsls",
     "basedpyright",
     "ruff",
+    "dockerls",
   },
 })
 
@@ -42,6 +43,16 @@ vim.lsp.enable('bashls')
 vim.lsp.enable('vtsls')
 vim.lsp.enable('basedpyright')
 vim.lsp.enable('ruff')
+vim.lsp.enable('dockerls')
+
+-- Ensure Dockerfile variants are detected so dockerls attaches
+vim.filetype.add({
+  filename = { ['Containerfile'] = 'dockerfile' },
+  pattern = {
+    ['Dockerfile.*'] = 'dockerfile',
+    ['.*%.dockerfile'] = 'dockerfile',
+  },
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
