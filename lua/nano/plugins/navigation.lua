@@ -5,6 +5,15 @@ vim.pack.add({ "https://github.com/stevearc/oil.nvim" })
 
 require("oil").setup({
   default_file_explorer = true,
+  -- Let LSP servers (e.g. vtsls) update imports when files are moved/renamed
+  -- in Oil. `enabled` is already Oil's default; the key addition here is
+  -- autosave_changes, so the auto-updated imports are written to disk.
+  -- "unmodified" = only auto-save files you weren't actively editing.
+  lsp_file_methods = {
+    enabled = true,
+    timeout_ms = 1000,
+    autosave_changes = "unmodified",
+  },
   view_options = {
     show_hidden = true,
   },
