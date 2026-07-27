@@ -61,27 +61,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     local opts = { buffer = args.buf }
-    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
-      vim.opt.completeopt = { 'menu', 'menuone', 'noinsert', 'fuzzy', 'popup' }
-      vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+    -- Completion is handled by blink.cmp (see plugins/completion.lua).
+    -- The <C-Space>/<C-n>/<C-p>/<CR> keys are configured there, unchanged.
 
-      vim.keymap.set('i', '<C-Space>', function()
-        vim.lsp.completion.get()
-      end)
-
-      -- Navigate the completion menu
-      vim.keymap.set('i', '<C-n>', function()
-        return vim.fn.pumvisible() == 1 and '<C-n>' or '<C-n>'
-      end, { expr = true, buffer = args.buf })
-
-      vim.keymap.set('i', '<C-p>', function()
-        return vim.fn.pumvisible() == 1 and '<C-p>' or '<C-p>'
-      end, { expr = true, buffer = args.buf })
-
-      -- Select/Confirm the completion
-      vim.keymap.set('i', '<CR>', function()
-        return vim.fn.pumvisible() == 1 and '<C-y>' or '<CR>'
-      end, { expr = true, buffer = args.buf })
+    -- Inlay hints (parameter names, return types). vtsls already configures
+    -- these in lsp/vtsls.lua; this actually turns them on, with a toggle.
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+      vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+      vim.keymap.set('n', '<leader>lh', function()
+        vim.lsp.inlay_hint.enable(
+          not vim.lsp.inlay_hint.is_enabled({ bufnr = args.buf }),
+          { bufnr = args.buf }
+        )
+      end, opts)
     end
 
     -- NOTE: <leader>lf is defined in plugins/formatting.lua (conform.nvim),

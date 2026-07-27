@@ -4,6 +4,11 @@
       "rev": "e30b7f2008e52442154b66f7c519bfd2f1e32acb",
       "src": "https://github.com/numToStr/Comment.nvim"
     },
+    "blink.cmp": {
+      "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
+      "src": "https://github.com/Saghen/blink.cmp",
+      "version": "1.0.0 - 2.0.0"
+    },
     "conform.nvim": {
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -48,10 +53,6 @@
     "nvim-autopairs": {
       "rev": "c2a0dd0d931d0fb07665e1fedb1ea688da3b80b4",
       "src": "https://github.com/windwp/nvim-autopairs"
-    },
-    "nvim-snippets": {
-      "rev": "56b4052f71220144689caaa2e5b66222ba5661eb",
-      "src": "https://github.com/garymjr/nvim-snippets"
     },
     "nvim-treesitter": {
       "rev": "f8bbc3177d929dc86e272c41cc15219f0a7aa1ac",
