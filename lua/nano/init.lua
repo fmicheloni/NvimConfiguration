@@ -3,6 +3,7 @@ require("nano.options")
 
 -- PLugins
 require("nano.plugins.editing")
+require("nano.plugins.formatting")
 require("nano.plugins.lsp")
 require("nano.plugins.navigation")
 require("nano.plugins.productivity")

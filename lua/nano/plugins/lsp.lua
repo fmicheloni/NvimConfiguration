@@ -32,6 +32,7 @@ require("mason-lspconfig").setup({
 require('mason-tool-installer').setup {
   ensure_installed = {
     'shellcheck',
+    'prettierd',
   }
 }
 
@@ -81,12 +82,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
       end, { expr = true, buffer = args.buf })
     end
 
-    -- Format the current buffer
-    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_formatting) then
-      vim.keymap.set('n', '<leader>lf', function()
-        vim.lsp.buf.format({ async = true })
-      end, opts)
-    end
+    -- NOTE: <leader>lf is defined in plugins/formatting.lua (conform.nvim),
+    -- which formats via Prettier/ruff and falls back to the LSP formatter.
 
     -- Navigation and info
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
