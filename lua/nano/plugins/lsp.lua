@@ -89,6 +89,21 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, opts)
+
+    -- Imports (mainly TS/JS via vtsls; harmless no-op where unsupported).
+    -- <leader>oi organizes imports; <leader>am adds all missing imports.
+    vim.keymap.set('n', '<leader>oi', function()
+      vim.lsp.buf.code_action({
+        context = { only = { 'source.organizeImports' }, diagnostics = {} },
+        apply = true,
+      })
+    end, opts)
+    vim.keymap.set('n', '<leader>am', function()
+      vim.lsp.buf.code_action({
+        context = { only = { 'source.addMissingImports.ts' }, diagnostics = {} },
+        apply = true,
+      })
+    end, opts)
   end,
 })
 

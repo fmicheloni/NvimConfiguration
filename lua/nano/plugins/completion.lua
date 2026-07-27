@@ -14,14 +14,18 @@ vim.pack.add({
 })
 
 require("blink.cmp").setup({
-  -- Keep the existing keys exactly as before (no new mappings):
+  -- Keep the existing keys exactly as before:
   --   <C-Space> trigger, <C-n>/<C-p> navigate, <CR> accept.
+  -- Added by request: <Tab>/<S-Tab> jump between snippet placeholders
+  -- (falls back to a normal Tab when not inside a snippet).
   keymap = {
     preset = "none",
     ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
     ["<C-n>"] = { "select_next", "fallback" },
     ["<C-p>"] = { "select_prev", "fallback" },
     ["<CR>"] = { "accept", "fallback" },
+    ["<Tab>"] = { "snippet_forward", "fallback" },
+    ["<S-Tab>"] = { "snippet_backward", "fallback" },
   },
 
   -- Pure-Lua fuzzy matcher: no Rust binary / build step needed (works with
