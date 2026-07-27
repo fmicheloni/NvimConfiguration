@@ -26,6 +26,7 @@ require("mason-lspconfig").setup({
     "basedpyright",
     "ruff",
     "dockerls",
+    "eslint",
   },
 })
 
@@ -45,6 +46,7 @@ vim.lsp.enable('vtsls')
 vim.lsp.enable('basedpyright')
 vim.lsp.enable('ruff')
 vim.lsp.enable('dockerls')
+vim.lsp.enable('eslint')
 
 -- Ensure Dockerfile variants are detected so dockerls attaches
 vim.filetype.add({
