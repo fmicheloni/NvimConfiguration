@@ -4,6 +4,8 @@
 3. Install `ripgrep`
 4. Install `fd`
 5. Install `node`. Use a node package manager.
+6. Install `tree-sitter-cli` (required by nvim-treesitter to compile parsers): `npm install -g tree-sitter-cli`
+7. A C compiler (`cc`/`gcc`) in your `PATH`, needed by `tree-sitter-cli` to build parsers.
 
 ## Useful use cases
 
