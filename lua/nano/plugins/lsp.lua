@@ -109,7 +109,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- Diagnostics
 vim.diagnostic.config({
-  virtual_text = true,
+  virtual_text = false,
   update_in_insert = true,
   severity_sort = true,
+  float = { source = true, border = "rounded" },
 })
+
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Show line diagnostics" })
