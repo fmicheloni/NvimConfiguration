@@ -41,6 +41,7 @@ require('mason-tool-installer').setup {
 -- Native LSP Config
 --------------------------
 vim.lsp.enable('lua_ls')
+vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('bashls')
 vim.lsp.enable('vtsls')
 vim.lsp.enable('basedpyright')
