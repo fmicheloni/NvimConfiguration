@@ -7,6 +7,18 @@
 6. Install `tree-sitter-cli` (required by nvim-treesitter to compile parsers): `npm install -g tree-sitter-cli`
 7. A C compiler (`cc`/`gcc`) in your `PATH`, needed by `tree-sitter-cli` to build parsers.
 
+## Rust (rust-analyzer)
+
+Not managed by Mason — we use the rustup binary so its proc-macro ABI matches the
+active toolchain. On each machine (macOS/Linux, rustup install):
+
+```sh
+rustup component add rust-analyzer   # required
+rustup component add clippy          # optional: on-save diagnostics
+```
+
+`lsp/rust_analyzer.lua` runs `~/.cargo/bin/rust-analyzer`. Keep it current with `rustup update`.
+
 ## Useful use cases
 
 

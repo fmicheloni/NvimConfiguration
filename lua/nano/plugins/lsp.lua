@@ -20,7 +20,9 @@ require("mason-lspconfig").setup({
   -- Add the servers you want Mason to install for you
   ensure_installed = {
     "lua_ls",
-    "rust_analyzer",
+    -- rust_analyzer is intentionally NOT managed by Mason. We use the
+    -- rustup-managed binary instead (see lsp/rust_analyzer.lua) so its
+    -- proc-macro ABI stays in sync with the active Rust toolchain.
     "bashls",
     "vtsls",
     "basedpyright",

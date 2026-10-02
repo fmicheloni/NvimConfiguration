@@ -17,6 +17,9 @@ conform.setup({
     -- Python: ruff (already installed via Mason). Both run in order:
     -- sort imports, then format. No stop_after_first (they're complementary).
     python          = { "ruff_organize_imports", "ruff_format" },
+    -- Rust: rustfmt (conform's built-in). Formats on save too, matching the
+    -- other filetypes. Respects rustfmt.toml / edition like `cargo fmt`.
+    rust            = { "rustfmt" },
   },
   -- Save: only auto-format filetypes with a real formatter above.
   -- lsp_format intentionally omitted so non-configured filetypes are
